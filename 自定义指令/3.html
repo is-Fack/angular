@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular.min.js"></script>
+</head>
+<body>
+        <div ng-controller="Ctrl1">
+            <o-oo atr2="aaa()">kk</o-oo>
+        </div>
+        <div ng-controller="Ctrl2">
+            <o-oo atr2="bbb()">kk</o-oo>
+        </div>
+</body>
+<script>
+    var app = angular.module("myApp",[]);
+
+    app.controller("Ctrl1",["$scope",function($scope){
+        $scope.aaa=function(){
+            console.log("aaa");
+        }
+    }]);
+    app.controller("Ctrl2",["$scope",function($scope){
+        $scope.bbb=function(){
+            console.log("bbb");
+        }
+    }])
+    app.directive("oOo",function () {
+        return{
+            restrict:"ECMA",
+            link:function (scope,ele,attr,superCtrl) {
+                ele.bind("click",function () {
+                    scope.$apply(attr.atr2);
+                })
+            }
+        }
+    })
+
+</script>
+</html>

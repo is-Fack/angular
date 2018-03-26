@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <script src="../angular.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+<div ng-controller="Ctrl">
+
+</div>
+</body>
+<script>
+    var app = angular.module("myApp",[]);
+    app.controller("Ctrl",["$scope",function($scope){
+        $scope.arr =[
+            {
+                name:"苹果",
+                price:5,
+                count:1,
+                isChecked:false
+
+            },
+            {
+                name:"火龙果",
+                price:10,
+                count:1,
+                isChecked:false
+            },
+            {
+                name:"葡萄",
+                price:3,
+                count:1,
+                isChecked:false
+            },
+            {
+                name:"榴莲",
+                price:24,
+                count:1,
+                isChecked:false
+            }
+        ]
+    }]).directive("ooo",function(){
+        return{
+            restrict:"ECMA",
+            scope:{
+                name:"="
+            },
+            templateUrl:"./9.html"
+        }
+    })
+</script>
+</html>

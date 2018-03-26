@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular.min.js"></script>
+    <style>
+        *{
+            margin:0;
+            padding: 0;
+            list-style: none;
+        }
+        ul{
+            display: flex;
+        }
+        ul li{
+            flex-grow: 1;
+            text-align: center;
+            line-height:30px;
+            box-sizing: border-box;
+            border:1px solid red;
+        }
+        ul li.bgColor{
+            background: #000;
+            color:#fff;
+        }
+        p{
+            height:300px;
+            border:1px solid #008000;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body ng-controller="Ctrl">
+        <ooo m-da="arr" m-in="index" m-fn="qh(hhh)"></ooo>
+</body>
+<script>
+    let app = angular.module("myApp",[]);
+    app.directive("ooo",function(){
+        return{
+            restrict:"ECMA",
+            replace:true,
+            scope:{
+                mDa:"=",
+                mIn:"=",
+                mFn:"&"
+            },
+            templateUrl:"./xxk2.html"
+        }
+    });
+
+    app.controller("Ctrl",["$scope",function($scope){
+        $scope.arr=[
+            {name:"一",con:"我是一"},
+            {name:"二",con:"我是二"},
+            {name:"三",con:"我是三"}
+        ];
+        $scope.index=0;
+        $scope.qh=function(index){
+            $scope.index=index;
+        }
+    }])
+</script>
+</html>

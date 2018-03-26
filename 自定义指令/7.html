@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular.min.js"></script>
+</head>
+<body>
+<div ng-controller="ctl1">
+    <div>父scope：
+        <div>Say：{{user.name}}<br>改变父scope的name：<input type="text" value="" ng-model="user.name"/></div>
+    </div>
+    <div>隔离scope：
+        <div user="user"></div>
+    </div>
+    <div>隔离scope（使用{{name}}，这个会报错）：
+        <div user="{{user}}"></div>
+    </div>
+</div>
+<script>
+    var app = angular.module("myApp",[]);
+    app.controller("ctl1",["$scope",function ($scope) {
+        $scope.user = {
+            name: 'hello',
+            id: 1
+        };
+    }]).directive("ssDirective", function () {
+        return {
+            restrict:"ECMA",
+            scope: {
+                user: "="
+            },
+            template: 'Say：{{user.name}} <br>改变隔离scope的name：<input type="buttom" value="" ng-model="user.name"/>'
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="../angular.min.js"></script>
+</head>
+<body>
+<div>
+    <p ooo aaa>一一一一</p>
+</div>
+<div>
+    <p ooo aaa bbb >二二二二</p>
+</div>
+<div>
+    <p ooo ccc bbb aaa>三三三三</p>
+</div>
+</body>
+<script>
+        let app = angular.module("myApp",[]);
+        app.directive("ooo",function(){
+            return{
+                restrict:"ECMA",
+                scope:{},
+                controller:function($scope){
+                    $scope.arr=[];
+                    this.aaa=function() {
+                        $scope.arr.push("aaa")
+                    }
+                    this.bbb=function() {
+                        $scope.arr.push("bbb")
+                    }
+                    this.ccc=function() {
+                        $scope.arr.push("ccc")
+                    }
+                },
+                link:function(scope,ele,attr,superCtrl){
+                    ele.bind("mouseenter",function(){
+                        console.log(scope.arr)
+                    })
+                }
+            }
+        })
+        app.directive("aaa",function(){
+            return {
+                require: "^ooo",
+                link: function (scope,ele,attr,superCtrl){
+                    superCtrl.aaa();
+                }
+            }
+        });
+        app.directive("bbb",function(){
+            return {
+                require: "^ooo",
+                link: function (scope,ele,attr,superCtrl){
+                    superCtrl.bbb();
+                }
+            }
+        });
+        app.directive("ccc",function(){
+            return {
+                require: "^ooo",
+                link: function (scope,ele,attr,superCtrl){
+                    superCtrl.ccc();
+                }
+            }
+        })
+</script>
+</html>

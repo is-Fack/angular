@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <script src="../angular.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <o-oo>
+        <h1>
+            内容
+        </h1>
+    </o-oo>
+</body>
+<script>
+    var app = angular.module("myApp",[]);
+
+    app.directive("oOo",function(){
+        return{
+            restrict:"ECMA",
+            transclude:false,
+            template:`<h1>ads<h1 ng-transclude>sss</h1></h1>`
+        }
+
+
+    })
+</script>
+</html>

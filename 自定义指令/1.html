@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../angular.min.js"></script>
+</head>
+<body>
+<div>
+<o-iss name="撒大大"></o-iss>
+</div>
+</body>
+<script>
+    var app = angular.module("myApp",[]);
+    app.directive("oIss",function(){
+        return{
+            restrict:"ECMA",
+            replace:true,
+            template:function(ele,attr){
+                let html ='';
+                html +=`<h1>${attr.name}</h1>`;
+                return html;
+            }
+        }
+    })
+</script>
+</html>
